@@ -10,8 +10,8 @@ Second, I'm happy to make museum for others too. But the problem is I'm making e
 
 Finally, for big metaverse. That is my dream, but I think If I do both spaces above(My museum and each other museums), I can transfer the player between museums. so that I can make "huge" museum same time.
 
-Here is the museum link which is still pre-open.
+Here is the museum link.
 https://museum.on.fleek.co/
 
-And will officially open on May 14th 11pm Friday PT
-https://twitter.com/sarupto/status/1392718524578091008?s=21
+Officially opened on May 14th 11pm Friday PT
+https://twitter.com/Sarupto/status/1393446080625340417?s=20

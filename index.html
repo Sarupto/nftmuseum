@@ -1,95 +1,40 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>NFT Museum by Saru</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <link rel="stylesheet" href="TemplateData/style.css" />
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-
-
-    <Script>
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-     document.write('<link rel="stylesheet" href="TemplateData/touchstyle.css" />');
-    }else{
-     document.write('<link rel="stylesheet" href="TemplateData/style.css" />');
-	}
-	</Script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-G1TBVL7T40"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-G1TBVL7T40");
-    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Virtual Museum Touch</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
   </head>
-
   <body>
-
-    <div class="wrapper">
-      <header class="main-head">
-        <a href="#default" class="logo">NFT Museum by Saru</a>
-        <div class="main-head-right"></div>
-      </header>
-      <nav class="main-nav">
-        <img id="moving-keys" src="./TemplateData/moving-keys.svg" alt="" />
-      </nav>
-      <article class="content">
-        <div id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width="960" height="600"></canvas>
-          <div id="unity-loading-bar">
-            <div id="saru-logo"></div>
-            <div id="unity-progress-bar-empty">
-              <div id="unity-progress-bar-full"></div>
-            </div>
-          </div>
-          <div id="unity-mobile-warning">
-            Loading ....... WebGL builds are not fully supported on mobile
-            devices yet.
-          </div>
-          <div id="unity-footer">
-            <div id="unity-fullscreen-button"></div>
-          </div>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
         </div>
-      </article>
-      <aside class="side">
-        <img id="art-logo" src="./TemplateData/art.svg" alt="" />
-      </aside>
-      <div class="ad">
-        <a href="https://instagram.com/sarupto">
-          <img id="social-logo" src="./TemplateData/instagram.svg" alt=""
-        /></a>
-        <a href="https://discord.gg/5ETMk3svt7">
-          <img id="social-logo" src="./TemplateData/discord.svg" alt=""
-        /></a>
-        <a href="https://mobile.twitter.com/sarupto">
-          <img id="social-logo" src="./TemplateData/twitter.svg" alt="" />
-        </a>
       </div>
-      <footer class="main-footer">
-        <div id="unity-build-title">NFT Museum by Saru ver.2.0.0</div>
-      </footer>
+      <div id="unity-mobile-warning">
+        WebGL builds are not supported on mobile devices.
+      </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Virtual Museum Touch</div>
+      </div>
     </div>
-
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Portal_test.loader.js";
+      var loaderUrl = buildUrl + "/Portal_Touch.loader.js";
       var config = {
-        dataUrl: buildUrl + "/Portal_test.data.unityweb",
-        frameworkUrl: buildUrl + "/Portal_test.framework.js.unityweb",
-        codeUrl: buildUrl + "/Portal_test.wasm.unityweb",
+        dataUrl: buildUrl + "/Portal_Touch.data.unityweb",
+        frameworkUrl: buildUrl + "/Portal_Touch.framework.js.unityweb",
+        codeUrl: buildUrl + "/Portal_Touch.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Saru",
-        productName: "Virtual Museum",
+        productName: "Virtual Museum Touch",
         productVersion: "1.0",
       };
 
@@ -112,22 +57,10 @@
         // Avoid draining fillrate performance on mobile devices,
         // and default/override low DPI mode on mobile browsers.
         config.devicePixelRatio = 1;
-
-        var loaderUrl = buildUrl + "/Portal_Touch.loader.js";
-      	var config = {
-        dataUrl: buildUrl + "/Portal_Touch.data.unityweb",
-        frameworkUrl: buildUrl + "/Portal_Touch.framework.js.unityweb",
-        codeUrl: buildUrl + "/Portal_Touch.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "Saru",
-        productName: "Virtual Museum",
-        productVersion: "1.0",
-      	};
-
-      	canvas.style.width = device-width;
-        canvas.style.height = device-height;
-
-
+        mobileWarning.style.display = "block";
+        setTimeout(() => {
+          mobileWarning.style.display = "none";
+        }, 5000);
       } else {
         canvas.style.width = "960px";
         canvas.style.height = "600px";
@@ -139,16 +72,14 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
-        })
-          .then((unityInstance) => {
-            loadingBar.style.display = "none";
-            fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-            };
-          })
-          .catch((message) => {
-            alert(message);
-          });
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
+        });
       };
       document.body.appendChild(script);
     </script>

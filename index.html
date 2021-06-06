@@ -7,7 +7,15 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <link rel="stylesheet" href="TemplateData/style.css" />
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <link rel="stylesheet" href="TemplateData/style.css" />
+
+
+    <Script>
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+     document.write('<link rel="stylesheet" href="TemplateData/touchstyle.css" />');
+    }else{
+     document.write('<link rel="stylesheet" href="TemplateData/style.css" />');
+	}
+	</Script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -24,7 +32,9 @@
       gtag("config", "G-G1TBVL7T40");
     </script>
   </head>
+
   <body>
+
     <div class="wrapper">
       <header class="main-head">
         <a href="#default" class="logo">NFT Museum by Saru</a>
